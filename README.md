@@ -1,6 +1,9 @@
 # DayZ Layers Stitcher
 
-DayZ Layers Stitcher is a graphical user interface (GUI) application designed for stitching images together, specifically for DayZ map layers. It is built using PyQt5 for the GUI components and the Python Imaging Library (PIL) for image processing.
+![preview](https://raw.githubusercontent.com/MrKamil404/DayZ-Layers-Stitcher/refs/heads/master/images/DayZ%20Layers%20Stitcher%201.0.1.png?token=GHSAT0AAAAAAC2KGDBPKBKU5EMPOZEIUZKOZ3UKP4Q)
+
+## Description
+DayZ Layers Stitcher is a tool for stitching image layers together.
 
 ## Features
 
