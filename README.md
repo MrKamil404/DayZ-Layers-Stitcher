@@ -28,12 +28,19 @@ The program uses the following key libraries:
 
 ## How to Use
 
-1. **Set Grid Size and Trim Pixels**: Enter the grid size and the number of pixels to trim from each image.
-2. **Select Prefix**: Choose the prefix for the images to be stitched.
-3. **Choose Background Color**: Select a background color for the stitched image.
-4. **Select Image Directory**: Browse and select the directory containing the images to be stitched.
-5. **Specify Output Path**: Browse and specify the output path for the final stitched image.
-6. **Set Preview Quality**: Enter the desired quality for the preview image.
-7. **Generate Preview**: Click "Reload preview" to generate and view a preview of the stitched image.
-8. **Stitch Images**: Click "Merge" to start the stitching process and save the final image to the specified output path.
+1. **Prepare the PNG layer files**. The file names should look like this: S/M/N_x_x_lco.
+2. **Set Grid Size and Trim Pixels**: Enter the grid size and the number of pixels to trim from each image.
+3. **Select Prefix**: Choose the prefix for the images to be stitched.
+4. **Choose Background Color**: Select a background color for the stitched image.
+5. **Select Image Directory**: Browse and select the directory containing the images to be stitched.
+6. **Specify Output Path**: Browse and specify the output path for the final stitched image.
+7. **Set Preview Quality**: Enter the desired quality for the preview image.
+8. **Generate Preview**: Click "Reload preview" to generate and view a preview of the stitched image.
+9. **Stitch Images**: Click "Merge" to start the stitching process and save the final image to the specified output path.
+
+## Support
+
+If you find this project useful, consider buying me a coffee!
+
+[![Buy Me A Coffee](https://img.shields.io/badge/Buy%20Me%20A%20Coffee-FFDD00?style=for-the-badge&logo=buy-me-a-coffee&logoColor=black)](https://buymeacoffee.com/mrkamil404)
 
