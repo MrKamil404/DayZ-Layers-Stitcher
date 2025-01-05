@@ -71,8 +71,9 @@ class ImageStitcher(QtWidgets.QWidget, ImageStitcherLogic):
         self.stitching_progress_bar = QtWidgets.QProgressBar()
         layout.addWidget(self.stitching_progress_bar, 8, 0, 1, 3)
 
-        self.status_label = QtWidgets.QLabel("Ready")
-        layout.addWidget(self.status_label, 9, 0, 1, 3)
+        self.console = QtWidgets.QTextEdit()
+        self.console.setReadOnly(True)
+        layout.addWidget(self.console, 9, 0, 1, 3)
 
         self.merge_button = QtWidgets.QPushButton("Merge")
         self.merge_button.clicked.connect(self.run_stitching)
@@ -163,12 +164,12 @@ class ImageStitcher(QtWidgets.QWidget, ImageStitcherLogic):
                 self.reload_preview()
         except ValueError as ve:
             QMessageBox.critical(self, "Input Error", str(ve))
-            print(f"Input Error: {ve}")
+            self.update_console(f"Input Error: {ve}")
 
     def select_output_path(self):
         if not validate_inputs(self.grid_size_entry, self.trim_pixels_entry):
             QMessageBox.critical(self, "Input Error", "Fill in 'Grid Size' and 'Trim Pixels' before selecting an output path. Grid size cannot be greater than 43 and Trim pixels cannot be greater than 32.")
-            print("Input Error: Fill in 'Grid Size' and 'Trim Pixels' before selecting an output path. Grid size cannot be greater than 43 and Trim pixels cannot be greater than 32.")
+            self.update_console("Input Error: Fill in 'Grid Size' and 'Trim Pixels' before selecting an output path. Grid size cannot be greater than 43 and Trim pixels cannot be greater than 32.")
             return
         path, _ = QFileDialog.getSaveFileName(self, "Save Stitched Image As", "", "PNG files (*.png);;JPEG files (*.jpg);;All files (*.*)")
         if path:
@@ -193,4 +194,7 @@ class ImageStitcher(QtWidgets.QWidget, ImageStitcherLogic):
             self.preview_images(image_directory, grid_size, trim_pixels, prefix, background_color)
         except ValueError as ve:
             QMessageBox.critical(self, "Input Error", str(ve))
-            print(f"Input Error: {ve}")
+            self.update_console(f"Input Error: {ve}")
+
+    def update_console(self, message):
+        self.console.append(message)

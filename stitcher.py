@@ -7,7 +7,7 @@ class ImageStitcherLogic:
     def main(self, grid_size, trim_pixels, image_directory, output_path, prefix, background_color):
         try:
             images = {}
-            self.update_status("Loading image list...")
+            self.update_console("Loading image list...")
             self.stitching_progress_bar.setValue(0)
             self.stitching_progress_bar.setMaximum(grid_size * grid_size)
             QtWidgets.QApplication.processEvents()
@@ -17,7 +17,7 @@ class ImageStitcherLogic:
                 raise ValueError("No images found matching the specified prefix and extension in the directory.")
 
             for idx, filename in enumerate(file_list):
-                self.update_status(f"Loading image {filename}...")
+                self.update_console(f"Loading image {filename}...")
                 self.stitching_progress_bar.setValue(idx + 1)
                 QtWidgets.QApplication.processEvents()
 
@@ -38,18 +38,18 @@ class ImageStitcherLogic:
             for x in range(grid_size):
                 for y in range(grid_size):
                     if (x, y) in images:
-                        self.update_status(f"Stitching image at position ({x}, {y})...")
+                        self.update_console(f"Stitching image at position ({x}, {y})...")
                         stitched_image.paste(images[(x, y)], (x * image_width, y * image_height))
                     else:
-                        self.update_status(f"Generating blank image at position ({x}, {y})...")
+                        self.update_console(f"Generating blank image at position ({x}, {y})...")
 
                     self.stitching_progress_bar.setValue(self.stitching_progress_bar.value() + 1)
                     QtWidgets.QApplication.processEvents()
 
-            self.update_status("Process completed. Saving image...")
+            self.update_console("Process completed. Saving image...")
 
             stitched_image.save(output_path)
-            self.update_status("Process completed. Image saved!")
+            self.update_console("Process completed. Image saved!")
             QMessageBox.information(self, "Success", f"Image saved as {output_path}!")
             print(f"Success: Image saved as {output_path}!")
         except Exception as e:
@@ -100,7 +100,7 @@ class ImageStitcherLogic:
                 raise ValueError("No images found matching the specified prefix.")
 
             for idx, filename in enumerate(file_list):
-                self.update_status(f"Loading preview for image {filename}...")
+                self.update_console(f"Loading preview for image {filename}...")
                 self.preview_progress_bar.setValue(idx + 1)
                 QtWidgets.QApplication.processEvents()
 
@@ -123,7 +123,7 @@ class ImageStitcherLogic:
 
             self.render_preview(preview_image)
             self.update_preview_info(preview_image, (width * grid_size, height * grid_size))
-            self.update_status("Preview loaded.")
+            self.update_console("Preview loaded.")
         except ValueError as ve:
             QMessageBox.critical(self, "Input Error", str(ve))
             print(f"Input Error: {ve}")
