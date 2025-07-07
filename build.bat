@@ -1,6 +1,6 @@
 @echo off
 echo ========================================
-echo    PAA Resize Tool - Builder Script
+echo    DayZ_Layers_Siticher - Builder Script
 echo ========================================
 echo.
 
