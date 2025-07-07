@@ -19,7 +19,7 @@ class ImageStitcher(QtWidgets.QWidget, ImageStitcherLogic):
         self.initUI()
 
     def initUI(self):
-        self.setWindowTitle("DayZ Layers Stitcher")
+        self.setWindowTitle("DayZ Layers Stitcher 1.1")
         self.setMinimumSize(1270, 815)
         self.resize(1270, 815)
 
