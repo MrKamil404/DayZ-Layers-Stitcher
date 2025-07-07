@@ -1,6 +1,6 @@
 # DayZ Layers Stitcher
 
-![preview](https://raw.githubusercontent.com/MrKamil404/DayZ-Layers-Stitcher/refs/heads/master/images/DayZ%20Layers%20Stitcher%201.0.1.png?token=GHSAT0AAAAAAC2KGDBPKBKU5EMPOZEIUZKOZ3UKP4Q)
+![preview](https://raw.githubusercontent.com/MrKamil404/DayZ-Layers-Stitcher/refs/heads/master/images/DayZ%20Layers%20Stitcher%201.1.png?token=GHSAT0AAAAAAC6Q5N4KKZ2ZWC5HU36MFBY62DLQVBQ)
 
 ## Description
 DayZ Layers Stitcher is a tool for stitching image layers together.
