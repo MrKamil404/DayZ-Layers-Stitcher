@@ -27,7 +27,7 @@ if exist "dist\PAA_Resize_Tool.exe" (
     set /p choice=
     if /i "%choice%"=="T" (
         echo Running app...
-        start "" "dist\PAA_Resize_Tool.exe"
+        start "" "dist\DayZ_Layers_Siticher.exe"
     )
 ) else (
     echo ========================================
