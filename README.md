@@ -45,12 +45,13 @@ The program uses the following key libraries:
 2. **Set Grid Size and Trim Pixels**: Enter the grid size and the number of pixels to trim from each image.
 3. **Select Prefix**: Choose the prefix for the images to be stitched.
 4. **Choose Background Color**: Select a background color for the stitched image.
-5. **(Optional) Set ImageToPAA Path**: If you have .paa files, browse and select the path to ImageToPAA.exe from DayZTools.
-6. **Select Image Directory**: Browse and select the directory containing the images to be stitched.
-7. **Specify Output Path**: Browse and specify the output path for the final stitched image.
-8. **Set Preview Quality**: Enter the desired quality for the preview image.
-9. **Generate Preview**: Click "Reload preview" to generate and view a preview of the stitched image.
-10. **Stitch Images**: Click "Merge" to start the stitching process and save the final image to the specified output path.
+5. **Set Workers**: Choose the number of workers (1-64) for parallel processing. More workers = faster conversion but more CPU usage.
+6. **(Optional) Set ImageToPAA Path**: If you have .paa files, browse and select the path to ImageToPAA.exe from DayZTools.
+7. **Select Image Directory**: Browse and select the directory containing the images to be stitched.
+8. **Specify Output Path**: Browse and specify the output path for the final stitched image.
+9. **Set Preview Quality**: Enter the desired quality for the preview image.
+10. **Generate Preview**: Click "Reload preview" to generate and view a preview of the stitched image.
+11. **Stitch Images**: Click "Merge" to start the stitching process and save the final image to the specified output path.
 
 ### PAA File Support
 
@@ -63,9 +64,10 @@ The application now supports .paa files from DayZ with intelligent caching and m
 4. Subsequent operations (preview reload, merge) use cached .png files for faster performance
 
 **Multi-threading Benefits:**
-- File conversion uses up to 4 concurrent threads for faster processing
+- File conversion uses configurable number of workers (1-64) for optimal performance based on your system
 - Image loading also utilizes multi-threading for improved performance
 - Progress is shown in real-time during operations
+- You can adjust the number of workers in the "Processing Settings" section
 
 **Cache Management:**
 - Use the "Clear Cache" button to manually remove all cached files
