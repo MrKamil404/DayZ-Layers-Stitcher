@@ -20,8 +20,8 @@ class ImageStitcher(QtWidgets.QWidget, ImageStitcherLogic):
 
     def initUI(self):
         self.setWindowTitle("DayZ Layers Stitcher 1.1")
-        self.setMinimumSize(1270, 815)
-        self.resize(1270, 815)
+        self.setMinimumSize(1270, 870)
+        self.resize(1270, 870)
 
         main_layout = QtWidgets.QHBoxLayout()
         main_layout.setContentsMargins(10, 10, 10, 10)
@@ -69,6 +69,19 @@ class ImageStitcher(QtWidgets.QWidget, ImageStitcherLogic):
 
         basic_group.setLayout(basic_layout)
         left_panel.addWidget(basic_group)
+
+        workers_group = QtWidgets.QGroupBox("Processing Settings")
+        workers_layout = QtWidgets.QGridLayout()
+        workers_layout.setSpacing(2)
+
+        workers_layout.addWidget(QtWidgets.QLabel("Workers:"), 0, 0)
+        self.workers_entry = QtWidgets.QLineEdit("4")
+        self.workers_entry.setValidator(QtGui.QIntValidator(1, 64))
+        self.workers_entry.setToolTip("Enter the number of workers for parallel processing (1-64)")
+        workers_layout.addWidget(self.workers_entry, 0, 1)
+
+        workers_group.setLayout(workers_layout)
+        left_panel.addWidget(workers_group)
 
         paths_group = QtWidgets.QGroupBox("File Paths")
         paths_layout = QtWidgets.QVBoxLayout()
@@ -192,7 +205,7 @@ class ImageStitcher(QtWidgets.QWidget, ImageStitcherLogic):
         preview_display_layout.addWidget(self.info_label)
 
         self.graphics_view = QGraphicsView()
-        self.graphics_view.setMinimumSize(400, 655)
+        self.graphics_view.setMinimumSize(400, 710)
         self.graphics_scene = QGraphicsScene()
         self.graphics_view.setScene(self.graphics_scene)
         self.graphics_view.setRenderHint(QtGui.QPainter.Antialiasing)
@@ -223,12 +236,13 @@ class ImageStitcher(QtWidgets.QWidget, ImageStitcherLogic):
             "2. Set Grid Size and Trim Pixels: Enter the grid size and the number of pixels to trim from each image.\n"
             "3. Select Prefix: Choose the prefix for the images to be stitched.\n"
             "4. Choose Background Color: Select a background color for the stitched image.\n"
-            "5. (Optional) Set ImageToPAA Path: If you have .paa files, select the path to ImageToPAA.exe from DayZTools.\n"
-            "6. Select Image Directory: Browse and select the directory containing the images to be stitched.\n"
-            "7. Specify Output Path: Browse and specify the output path for the final stitched image.\n"
-            "8. Set Preview Quality: Enter the desired quality for the preview image.\n"
-            "9. Generate Preview: Click 'Reload preview' to generate and view a preview of the stitched image.\n"
-            "10. Stitch Images: Click 'Merge' to start the stitching process and save the final image to the specified output path.\n\n"
+            "5. Set Workers: Choose the number of workers (1-64) for parallel processing. More workers = faster conversion but more CPU usage.\n"
+            "6. (Optional) Set ImageToPAA Path: If you have .paa files, select the path to ImageToPAA.exe from DayZTools.\n"
+            "7. Select Image Directory: Browse and select the directory containing the images to be stitched.\n"
+            "8. Specify Output Path: Browse and specify the output path for the final stitched image.\n"
+            "9. Set Preview Quality: Enter the desired quality for the preview image.\n"
+            "10. Generate Preview: Click 'Reload preview' to generate and view a preview of the stitched image.\n"
+            "11. Stitch Images: Click 'Merge' to start the stitching process and save the final image to the specified output path.\n\n"
             "Note: PAA files will be automatically converted to PNG using ImageToPAA and stored in a temporary folder during processing."
         )
         QMessageBox.information(self, "Help", help_message)
@@ -401,7 +415,10 @@ class ImageStitcher(QtWidgets.QWidget, ImageStitcherLogic):
             converted_files = []
             cache_data = self.load_cache_info()
             
-            max_workers = min(4, len(files_to_convert))
+            try:
+                max_workers = min(int(self.workers_entry.text()), len(files_to_convert))
+            except (ValueError, AttributeError):
+                max_workers = min(4, len(files_to_convert))
             
             with ThreadPoolExecutor(max_workers=max_workers) as executor:
                 futures = [executor.submit(self.convert_single_paa, args) for args in conversion_args]
