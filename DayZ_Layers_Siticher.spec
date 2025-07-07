@@ -22,7 +22,7 @@ exe = EXE(
     a.binaries,
     a.datas,
     [],
-    name='PAA_Resize_Tool',
+    name='DayZ_Layers_Siticher',
     debug=False,
     bootloader_ignore_signals=False,
     strip=False,

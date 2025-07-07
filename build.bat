@@ -11,7 +11,7 @@ if exist *.spec del *.spec
 
 echo.
 echo Building app...
-py -m PyInstaller --onefile --windowed --name "PAA_Resize_Tool" --icon=NONE main.py
+py -m PyInstaller --onefile --windowed --name "DayZ_Layers_Siticher" --icon=NONE main.py
 
 echo.
 if exist "dist\PAA_Resize_Tool.exe" (
